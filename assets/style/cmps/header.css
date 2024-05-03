@@ -1,0 +1,42 @@
+header{
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-between;
+    
+    background-color: rgb(177, 200, 222);
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+h1{
+    margin-inline-start: 10px;
+}
+
+.logo > img{
+    width: 80px;
+    height: 100px;
+}
+
+nav{
+    display: flex;
+    gap: 10px;
+
+    margin-inline-end: 10px;
+}
+
+nav > *{
+    background-color: rgb(206, 172, 238);
+    padding: 10px;
+
+    margin: 5px;
+
+    border-radius: 5px;
+    border: 2px solid black;
+
+    font-weight: bold;
+    
+}
