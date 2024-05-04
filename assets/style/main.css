@@ -9,4 +9,6 @@
 
 /* Components */
 
-@import "cmps/header.css"
+@import "cmps/main.css";
+@import "cmps/header.css";
+@import "cmps/books-list.css";

@@ -5,7 +5,8 @@ import { About } from './cmps/About.jsx'
 const { useState } = React
 
 export function RootCmp() {
-  const [route, setRoute] = useState('Home')
+  // const [route, setRoute] = useState('Home')
+  const [route, setRoute] = useState('Books')
 
   return (
     <React.Fragment>
@@ -33,6 +34,7 @@ export function RootCmp() {
         {route === 'Books' && <Books />}
         {route === 'About' && <About />}
       </main>
+      <footer>Dor Hakim</footer>
     </React.Fragment>
   )
 }
