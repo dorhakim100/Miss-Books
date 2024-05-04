@@ -25,14 +25,17 @@ export function BooksList({ books, onChangeRoute, currBookDetails }) {
       <li>
         {books.map((book) => {
           return (
-            <div key={book.title}>
-              <BookPreview book={book} />
-              <button
-                data-book-id={book.id}
-                onClick={(e) => onSetBookDetails(e.target)}
-              >
-                Full details
-              </button>
+            <div className='flipper-container'>
+              <div key={book.title} className='book flipper'>
+                <BookPreview book={book} />
+                <button
+                  className='btn full-details back'
+                  data-book-id={book.id}
+                  onClick={(e) => onSetBookDetails(e.target)}
+                >
+                  Full details
+                </button>
+              </div>
             </div>
           )
         })}

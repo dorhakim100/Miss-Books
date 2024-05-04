@@ -3,41 +3,7 @@ import { asyncStorage } from './async-storage.service.js'
 
 const { loadFromStorage, saveToStorage, makeId, makeLorem } = utilService
 
-const books = loadFromStorage('books') || [
-  {
-    id: makeId(),
-    title: 'Gwent',
-    description: makeLorem(),
-    cover: '../BooksImages/1.jpg',
-    listPrice: {
-      amount: 109,
-      currencyCode: 'EUR',
-      isOnSale: false,
-    },
-  },
-  {
-    id: makeId(),
-    title: 'Between Here and Gone',
-    description: makeLorem(),
-    cover: '../BooksImages/2.jpg',
-    listPrice: {
-      amount: 22,
-      currencyCode: 'EUR',
-      isOnSale: false,
-    },
-  },
-  {
-    id: makeId(),
-    title: 'Magic Lantern',
-    description: makeLorem(),
-    cover: '../BooksImages/3.jpg',
-    listPrice: {
-      amount: 84,
-      currencyCode: 'EUR',
-      isOnSale: false,
-    },
-  },
-]
+const books = loadFromStorage('books') || _createBooks()
 
 saveBooks()
 
@@ -61,4 +27,31 @@ function createBook() {
 
 function saveBooks() {
   if (!loadFromStorage('books')) saveToStorage('books', books)
+}
+
+function _createBooks() {
+  const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+  const books = []
+  for (let i = 0; i < 20; i++) {
+    const book = {
+      id: utilService.makeId(),
+      title: utilService.makeLorem(2),
+      subtitle: utilService.makeLorem(4),
+      authors: [utilService.makeLorem(1)],
+      publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+      description: utilService.makeLorem(20),
+      pageCount: utilService.getRandomIntInclusive(20, 600),
+      categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+      cover: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+      language: 'en',
+      listPrice: {
+        amount: utilService.getRandomIntInclusive(80, 500),
+        currencyCode: 'EUR',
+        isOnSale: Math.random() > 0.7,
+      },
+    }
+    books.push(book)
+  }
+  console.log('books', books)
+  return books
 }
