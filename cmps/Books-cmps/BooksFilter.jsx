@@ -1,11 +1,11 @@
 export function BooksFilter() {
   return (
     <div className='filter-container'>
-      <label htmlFor=''>Title:</label>
-      <input type='text' />
+      <label htmlFor='title'>Title:</label>
+      <input type='text' id='title' placeholder='Type a title' />
 
-      <label htmlFor=''>Price:</label>
-      <input type='range' />
+      <label htmlFor='price'>Price:</label>
+      <input type='range' id='price' />
     </div>
   )
 }

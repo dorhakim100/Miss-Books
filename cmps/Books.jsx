@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 const { query, get, post, put, remove } = storageService
 
 /*
@@ -17,8 +17,10 @@ import {
 
 import { BooksList } from './Books-cmps/BooksList.jsx'
 import { BooksFilter } from './Books-cmps/BooksFilter.jsx'
+import { BookDetails } from './Books-cmps/BookDetails.jsx'
 
 export function Books() {
+  const [route, setRoute] = useState('BooksList')
   let [books, setBooks] = useState([])
 
   query('books').then((res) => {
@@ -27,6 +29,13 @@ export function Books() {
   })
 
   // console.log(get('books', 'n2FbDr'))
+  let currBookDetails = useRef()
+
+  function onChangeRoute(route, book) {
+    console.log(book)
+    currBookDetails.current = book
+    setRoute(route)
+  }
 
   return (
     <React.Fragment>
@@ -34,7 +43,19 @@ export function Books() {
         <h2>Books</h2>
         <BooksFilter />
       </div>
-      <BooksList books={books} />
+      {route === 'BooksList' && (
+        <BooksList
+          books={books}
+          onChangeRoute={onChangeRoute}
+          currBookDetails={currBookDetails}
+        />
+      )}
+      {route === 'BookDetails' && (
+        <BookDetails
+          currBookDetails={currBookDetails}
+          onChangeRoute={onChangeRoute}
+        />
+      )}
     </React.Fragment>
   )
 }
