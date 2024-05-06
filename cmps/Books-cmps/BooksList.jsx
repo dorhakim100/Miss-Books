@@ -3,8 +3,9 @@ import {
   asyncStorageServer,
   storageService,
 } from '../../services/async-storage.service.js'
+import { booksService } from '../../services/booksService.js'
 
-const { query, get, post, put, remove } = storageService
+const { getDefaultFilter, query, get, post, put, remove } = booksService
 
 export function BooksList({ books, onChangeRoute, currBookDetails }) {
   //   console.log(books)
@@ -12,7 +13,7 @@ export function BooksList({ books, onChangeRoute, currBookDetails }) {
   function onSetBookDetails(elBook) {
     const bookId = elBook.dataset.bookId
     // console.log(bookId)
-    currBookDetails = get('books', bookId).then((res) => {
+    currBookDetails = get(bookId).then((res) => {
       currBookDetails = res
       console.log('done')
       console.log(currBookDetails)

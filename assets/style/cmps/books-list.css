@@ -2,7 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
 
+.filter-container{
+    display: flex;
+    gap: 8px;
+
+    font-weight: bold;
 }
 
 .book-container{

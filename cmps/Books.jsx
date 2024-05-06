@@ -18,15 +18,22 @@ import {
 import { BooksList } from './Books-cmps/BooksList.jsx'
 import { BooksFilter } from './Books-cmps/BooksFilter.jsx'
 import { BookDetails } from './Books-cmps/BookDetails.jsx'
+import { booksService } from '../services/booksService.js'
+
+const { getDefaultFilter } = booksService
 
 export function Books() {
   const [route, setRoute] = useState('BooksList')
   let [books, setBooks] = useState([])
+  const [filterBy, setFilterBy] = useState(booksService.getDefaultFilter())
 
-  query('books').then((res) => {
-    books = res
-    setBooks(books)
-  })
+  useEffect(() => {
+    booksService.query(filterBy).then((books) => setBooks(books))
+  }, [filterBy])
+
+  function onSetFilterBy(newFilter) {
+    setFilterBy(newFilter)
+  }
 
   // console.log(get('books', 'n2FbDr'))
   let currBookDetails = useRef()
@@ -37,11 +44,19 @@ export function Books() {
     setRoute(route)
   }
 
+  function resetFilter() {
+    setFilterBy(booksService.getDefaultFilter())
+  }
+
   return (
     <React.Fragment>
       <div className='books-header'>
         <h2>Books</h2>
-        <BooksFilter />
+        <BooksFilter
+          filterBy={filterBy}
+          onSetFilterBy={onSetFilterBy}
+          resetFilter={resetFilter}
+        />
       </div>
       {route === 'BooksList' && (
         <BooksList
