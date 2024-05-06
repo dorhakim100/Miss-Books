@@ -12,6 +12,14 @@ export function BookPreview({ book }) {
         </h4>
       </div>
       <img src={book.cover} alt='' />
+      <h5>
+        Page Count: {book.pageCount}{' '}
+        {book.pageCount < 100 && <span> | Light Reading</span>}
+        {book.pageCount > 200 && book.pageCount < 500 && (
+          <span> | Descent Reading</span>
+        )}
+        {book.pageCount > 500 && <span> | Serious Reading!</span>}
+      </h5>
     </div>
   )
 }

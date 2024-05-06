@@ -51,6 +51,14 @@
     
 }
 
+.expensive{
+    color: red;
+}
+
+.cheap{
+    color: green;
+}
+
 .book-container:hover ~ .full-details{
 
     opacity: 1;
