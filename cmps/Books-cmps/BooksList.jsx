@@ -7,6 +7,8 @@ import { booksService } from '../../services/booksService.js'
 
 const { getDefaultFilter, query, get, post, put, remove } = booksService
 
+const { Link } = ReactRouterDOM
+
 export function BooksList({ books, onChangeRoute, currBookDetails }) {
   //   console.log(books)
 
@@ -30,13 +32,14 @@ export function BooksList({ books, onChangeRoute, currBookDetails }) {
               <div key={book.title} className='book flipper'>
                 <BookPreview book={book} />
                 {/* <div>hey</div> */}
-                <button
-                  className='btn full-details back'
-                  data-book-id={book.id}
-                  onClick={(e) => onSetBookDetails(e.target)}
-                >
-                  Full details
-                </button>
+                <Link to={`/book/${book.id}`}>
+                  <button
+                    className='btn full-details back'
+                    data-book-id={book.id}
+                  >
+                    Full details
+                  </button>
+                </Link>
               </div>
             </div>
           )

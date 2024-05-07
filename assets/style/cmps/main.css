@@ -60,3 +60,8 @@ footer{
 button{
     cursor: pointer;
 }
+
+.active{
+    background-color: rgb(95, 45, 156);
+    color: white;
+}
