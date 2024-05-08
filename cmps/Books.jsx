@@ -1,5 +1,5 @@
 const { useState, useEffect, useRef } = React
-const { query, get, post, put, remove } = storageService
+// const { query, get, post, put, remove } = storageService
 
 /*
 query - get all
@@ -20,7 +20,9 @@ import { BooksFilter } from './Books-cmps/BooksFilter.jsx'
 import { BookDetails } from './Books-cmps/BookDetails.jsx'
 import { booksService } from '../services/booksService.js'
 
-const { getDefaultFilter } = booksService
+const { getDefaultFilter, remove } = booksService
+
+// localStorage.clear()
 
 export function Books() {
   const [route, setRoute] = useState('BooksList')
@@ -48,6 +50,14 @@ export function Books() {
     setFilterBy(booksService.getDefaultFilter())
   }
 
+  function onRemove({ target }) {
+    const bookId = target.dataset.bookId
+
+    remove(bookId).then(() => {
+      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId))
+    })
+  }
+
   return (
     <React.Fragment>
       <div className='books-header'>
@@ -63,6 +73,7 @@ export function Books() {
           books={books}
           onChangeRoute={onChangeRoute}
           currBookDetails={currBookDetails}
+          onRemove={onRemove}
         />
       )}
       {route === 'BookDetails' && (

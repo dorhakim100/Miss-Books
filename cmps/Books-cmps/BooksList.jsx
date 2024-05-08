@@ -9,7 +9,7 @@ const { getDefaultFilter, query, get, post, put, remove } = booksService
 
 const { Link } = ReactRouterDOM
 
-export function BooksList({ books, onChangeRoute, currBookDetails }) {
+export function BooksList({ books, onChangeRoute, currBookDetails, onRemove }) {
   //   console.log(books)
 
   function onSetBookDetails(elBook) {
@@ -29,17 +29,40 @@ export function BooksList({ books, onChangeRoute, currBookDetails }) {
         {books.map((book) => {
           return (
             <div className='flipper-container'>
-              <div key={book.title} className='book flipper'>
+              <div
+                key={book.title}
+                className='book flipper'
+                data-bookId={book.id}
+              >
                 <BookPreview book={book} />
                 {/* <div>hey</div> */}
-                <Link to={`/book/${book.id}`}>
-                  <button
-                    className='btn full-details back'
-                    data-book-id={book.id}
-                  >
-                    Full details
-                  </button>
-                </Link>
+                <div className='btn-container'>
+                  <Link to={`/book`}>
+                    <button
+                      className='btn full-details back'
+                      data-book-id={book.id}
+                      onClick={onRemove}
+                    >
+                      Remove
+                    </button>
+                  </Link>
+                  <Link to={`/book/${book.id}`}>
+                    <button
+                      className='btn full-details back'
+                      data-book-id={book.id}
+                    >
+                      Full details
+                    </button>
+                  </Link>
+                  <Link to={`/book/edit/${book.id}`}>
+                    <button
+                      className='btn full-details back'
+                      data-book-id={book.id}
+                    >
+                      Edit
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           )

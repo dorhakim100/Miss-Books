@@ -7,6 +7,7 @@ import { About } from './cmps/About.jsx'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { BookDetails } from './cmps/Books-cmps/BookDetails.jsx'
+import { BookEdit } from './cmps/Books-cmps/BookEdit.jsx'
 
 const { useState } = React
 
@@ -24,7 +25,7 @@ export function RootCmp() {
           <Route path='/book' element={<Books />} />
           <Route path='/about' element={<About />} />
           <Route path='/book/:bookId' element={<BookDetails />} />
-          {/* <Route path="/book/edit/" element={ <BookEdit /> }/> */}
+          <Route path='/book/edit/:bookId' element={<BookEdit />} />
           {/* <Route path="/book/edit/:carId" element={ <BookEdit /> }/> */}
         </Routes>
       </main>
