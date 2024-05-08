@@ -5,7 +5,7 @@ const { useParams, useNavigate } = ReactRouter
 
 const { Link } = ReactRouterDOM
 
-// const { get } = booksService
+const { get } = booksService
 
 export function BookDetails({ currBookDetails, onChangeRoute }) {
   const [book, setBook] = useState(null)
@@ -34,7 +34,6 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
 
   const date = new Date()
   const currYear = date.getFullYear()
-  console.log(currYear)
 
   if (isLoading) return <h3>Loading...</h3>
   return (
@@ -80,6 +79,14 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
         </h4>
         <h5>{book.subtitle}</h5>
         <p>{book.description}</p>
+      </div>
+      <div className='button-container'>
+        <Link to={`/book/${book.prevBookId}`}>
+          <button>Prev</button>
+        </Link>
+        <Link to={`/book/${book.nextBookId}`}>
+          <button>Next</button>
+        </Link>
       </div>
     </React.Fragment>
   )

@@ -112,6 +112,13 @@ grid-row: 1 / 10;
     border-radius: 5px;
 }
 
+.button-container{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 25px;
+}
+
 .edit-header{
     text-align: center;
 }
