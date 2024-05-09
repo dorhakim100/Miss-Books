@@ -65,3 +65,10 @@ button{
     background-color: rgb(95, 45, 156);
     color: white;
 }
+
+/* loader */
+
+.loader{
+    width: 80vw;
+    height: 50vh;
+}

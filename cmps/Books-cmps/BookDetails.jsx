@@ -1,5 +1,7 @@
 import { booksService } from '../../services/booksService.js'
 
+import { Loader } from '../Loader.jsx'
+
 const { useState, useEffect, useRef } = React
 const { useParams, useNavigate } = ReactRouter
 
@@ -46,7 +48,7 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
     setRead(isMore.current)
   }
 
-  if (isLoading) return <h3>Loading...</h3>
+  if (isLoading) return <Loader />
   return (
     <React.Fragment>
       <Link to='/book'>
@@ -91,7 +93,7 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
         <h5>{book.subtitle}</h5>
         <p>
           {isMore.current === false &&
-            book.description.substring(0, 100) + '...'}
+            book.description.substring(0, 80) + '...'}
           {isMore.current === true && book.description}
           <br></br>
           <span className='btn read-more' onClick={toggleRead}>

@@ -1,5 +1,7 @@
 import { booksService } from '../../services/booksService.js'
 
+import { Loader } from '../Loader.jsx'
+
 const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
 
@@ -57,7 +59,7 @@ export function BookEdit() {
         navigate('/book')
       })
   }
-  if (isLoading) return <h3>Loading...</h3>
+  if (isLoading) return <Loader />
   return (
     <React.Fragment>
       <Link to='/book'>
