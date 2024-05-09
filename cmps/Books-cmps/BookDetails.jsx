@@ -1,6 +1,8 @@
 import { booksService } from '../../services/booksService.js'
 
 import { Loader } from '../Loader.jsx'
+import { Reviews } from './Reviews.jsx'
+import { AddReview } from './AddReview.jsx'
 
 const { useState, useEffect, useRef } = React
 const { useParams, useNavigate } = ReactRouter
@@ -102,6 +104,8 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
           </span>
         </p>
       </div>
+      <AddReview />
+      <Reviews book={book} />
       <div className='button-container'>
         <Link to={`/book/${book.prevBookId}`}>
           <button className='btn'>Prev</button>
