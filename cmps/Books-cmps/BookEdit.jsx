@@ -48,8 +48,14 @@ export function BookEdit() {
 
   function onSaveChanges() {
     save(book)
-    alert('Successfully changed')
-    navigate('/book')
+      .then(() => {
+        alert('Successfully changed')
+        navigate('/book')
+      })
+      .catch(() => {
+        alert('Couldnt save')
+        navigate('/book')
+      })
   }
   if (isLoading) return <h3>Loading...</h3>
   return (
@@ -59,7 +65,7 @@ export function BookEdit() {
       </Link>
       <h2 className='edit-header'>Edit</h2>
       <div className='edit-container'>
-        <div>
+        <div className='edit title-container'>
           <h3>Book title:</h3>
           <input onChange={edit} type='text' name='title' value={book.title} />
         </div>
@@ -72,7 +78,7 @@ export function BookEdit() {
             value={book.listPrice.amount}
           />
         </div>
-        <button className='submit-btn' onClick={onSaveChanges}>
+        <button className='btn submit' onClick={onSaveChanges}>
           Submit
         </button>
         <img src={book.cover} alt='' />

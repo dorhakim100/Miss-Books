@@ -1,6 +1,6 @@
 import { booksService } from '../../services/booksService.js'
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 const { useParams, useNavigate } = ReactRouter
 
 const { Link } = ReactRouterDOM
@@ -13,6 +13,10 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
 
   const params = useParams()
   const navigate = useNavigate()
+
+  let isMore = useRef(false)
+  const [read, setRead] = useState(isMore.current)
+  console.log(isMore)
 
   useEffect(() => {
     setIsLoading(true)
@@ -34,6 +38,13 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
 
   const date = new Date()
   const currYear = date.getFullYear()
+
+  function toggleRead() {
+    isMore.current === true ? (isMore.current = false) : (isMore.current = true)
+    console.log(isMore.current)
+    console.log(book)
+    setRead(isMore.current)
+  }
 
   if (isLoading) return <h3>Loading...</h3>
   return (
@@ -78,14 +89,23 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
           {book.pageCount > 500 && <span> | Serious Reading!</span>}
         </h4>
         <h5>{book.subtitle}</h5>
-        <p>{book.description}</p>
+        <p>
+          {isMore.current === false &&
+            book.description.substring(0, 100) + '...'}
+          {isMore.current === true && book.description}
+          <br></br>
+          <span className='btn read-more' onClick={toggleRead}>
+            {book.description.length > 100 && !isMore.current && 'Read more...'}
+            {book.description.length > 100 && isMore.current && 'Read less...'}
+          </span>
+        </p>
       </div>
       <div className='button-container'>
         <Link to={`/book/${book.prevBookId}`}>
-          <button>Prev</button>
+          <button className='btn'>Prev</button>
         </Link>
         <Link to={`/book/${book.nextBookId}`}>
-          <button>Next</button>
+          <button className='btn'>Next</button>
         </Link>
       </div>
     </React.Fragment>

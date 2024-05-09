@@ -28,6 +28,14 @@
     gap: 15px;
 }
 
+.read-more{
+    color: blue;
+    cursor: pointer;
+
+    position: relative;
+    top: 20px;
+}
+
 .full-details{
     position: relative;
     bottom: 200px;
@@ -139,6 +147,10 @@ grid-row: 1 / 10;
     padding: 10px;
 }
 
+.edit>input{
+    width: 25vw;
+}
+
 .edit-container>*{
     display: flex;
     gap: 5px;
@@ -156,14 +168,14 @@ grid-row: 1 / 10;
     border: 5px solid rgb(193, 149, 234);
 }
 
-.submit-btn{
+.btn{
     background-color: rgb(193, 149, 234);
     border-radius: 5px;
     border: 2px solid black;
     padding: 5px;
 }
 
-.submit-btn:active{
+.btn:active{
     background-color: rgb(95, 45, 156);
     color: white;
 }
