@@ -50,6 +50,10 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
     setRead(isMore.current)
   }
 
+  function saveReview(review) {
+    book.reviews.unshift(review)
+  }
+
   if (isLoading) return <Loader />
   return (
     <React.Fragment>
@@ -75,7 +79,7 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
         <h4>
           Author:{' '}
           {book.authors.map((author) => {
-            return <span>{author}</span>
+            return <span key={author}>{author}</span>
           })}
         </h4>
         <h4>
@@ -104,7 +108,7 @@ export function BookDetails({ currBookDetails, onChangeRoute }) {
           </span>
         </p>
       </div>
-      <AddReview />
+      <AddReview book={book} saveReview={saveReview} />
       <Reviews book={book} />
       <div className='button-container'>
         <Link to={`/book/${book.prevBookId}`}>
