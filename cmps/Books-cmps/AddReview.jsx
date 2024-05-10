@@ -1,6 +1,12 @@
 const { useState, useEffect, useRef } = React
 
+import { utilService } from '../../services/util.service.js'
+
 export function AddReview({ book, saveReview }) {
+  // const [reviews, setTheReviews] = useState(book.reviews)
+
+  // const reviews = book.reviews
+
   function onStarClick({ target }) {
     const rating = +target.value
     console.log(rating)
@@ -27,7 +33,16 @@ export function AddReview({ book, saveReview }) {
   // }, [])
 
   function onAddReview() {
+    // book.reviews.unshift(review)
+    // book.reviews[0].id = utilService.makeId()
+    // console.log(review)
     saveReview(review)
+    setReview({
+      fullName: 'Books Reader',
+      rating: 0,
+      date: new Date().toISOString().slice(0, 10),
+      txt: '',
+    })
   }
 
   function handleChange({ target }) {
@@ -39,7 +54,7 @@ export function AddReview({ book, saveReview }) {
 
   return (
     <div className='new-review-container'>
-      <h2>Add Review</h2>
+      <h3>Add Review</h3>
       <div className='name-container'>
         <label htmlFor='review-name'>Name:</label>
         <input

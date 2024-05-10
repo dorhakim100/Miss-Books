@@ -94,16 +94,29 @@
     height: 50px;
 }
 
+.book-page{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+
 .book-details{
+    grid-column: 1/-1;
+    grid-row: 1/2;
     display: grid;
     grid-template-columns: repeat(2,1fr);
 
     gap: 5px;
+
+    overflow: auto;
+    height: 30vh;
 }
 
 .book-details > img{
 grid-column: 2 / 3;
 grid-row: 1 / 10;
+
+height: 30vh;
 }
 
 .book-details > h3{
@@ -111,6 +124,7 @@ grid-row: 1 / 10;
     align-items: center;
 
     gap: 5px;
+    
 }
 
 .sale{
@@ -198,12 +212,61 @@ grid-row: 1 / 10;
     display: flex;
 }
 
+.star{
+    color: #c59b08;
+}
+
 .review-content{
     height: 10vh;
     width: 40%;
 
     padding-bottom: 70px;
 }
+
+.review-container{
+    grid-column: 1/-1;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 15px;
+}
+
+.reviews-container{
+    /* grid-row: 2/3; */
+    /* grid-column: 2/3; */
+
+    overflow:auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    height: 30vh;
+}
+
+.review{
+    border: 2px solid black;
+
+    padding: 5px;
+
+    display: grid;
+    grid-template-columns: auto 25%;
+    grid-template-rows: repeat(4,auto);
+}
+
+.remove{
+    grid-column: 2/3;
+    grid-row: 1/-1;
+
+    width: 25px;
+    height: 25px;
+
+    justify-self: end;
+    align-self: start;
+}
+
+
 
 @keyframes discard {
 
@@ -218,7 +281,7 @@ grid-row: 1 / 10;
 
 .rate {
     float: left;
-    height: 46px;
+    height: 20px;
     padding: 0 10px;
 }
 .rate:not(:checked) > input {
